@@ -1,6 +1,6 @@
-import { RightArrow } from '../../assets/RightArrow';
-import { Button } from '../atoms/Button';
-import { Image } from '../atoms/Image';
+import { RightArrow } from "../../assets/RightArrow";
+import { Button } from "../atoms/Button";
+import { Image } from "../atoms/Image";
 
 type VoiceBoxProps = {
   title: string;
@@ -11,13 +11,13 @@ type VoiceBoxProps = {
 
 const VoiceBox = ({
   title,
-  subtitle = 'original',
+  subtitle = "original",
   imageSrc,
-  className = '',
+  className = "",
 }: VoiceBoxProps) => {
   return (
     <div
-      className={`flex items-center gap-4 p-4  rounded-2xl shadow-sm w-72 m-2 ${className}`}
+      className={`flex items-center gap-4 p-4  rounded-2xl shadow-sm w-full m-2 ${className}`}
     >
       <Image src={imageSrc} alt={title} className="w-16 h-16 rounded-full" />
 
