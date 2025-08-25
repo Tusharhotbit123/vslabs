@@ -64,14 +64,20 @@ import { useState } from "react";
 import { Button } from "../atoms/Button";
 import { DownArrow } from "../../assets/DownArrow";
 
-const Dropdown = ({ options }: { options: string[] }) => {
+const Dropdown = ({
+  options,
+  onSelect,
+}: {
+  options: string[];
+  onSelect: (value: string) => void;
+}) => {
   return (
     <div className="absolute right-0 mt-2 w-3/4 bg-white border rounded-lg shadow-lg z-10">
       {options.map((opt, i) => (
         <div
           key={i}
           className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-          onClick={() => alert(opt)}
+          onClick={() => onSelect(opt)}
         >
           {opt}
         </div>
@@ -82,9 +88,10 @@ const Dropdown = ({ options }: { options: string[] }) => {
 
 type TopbarProps = {
   buttons: string[];
+  onSelect: (value: string) => void;
 };
 
-const Topbar = ({ buttons }: TopbarProps) => {
+const Topbar = ({ buttons, onSelect }: TopbarProps) => {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const renderButton = (label: string, key: string, options: string[]) => (
@@ -102,7 +109,15 @@ const Topbar = ({ buttons }: TopbarProps) => {
           }}
         />
       </Button>
-      {openDropdown === key && <Dropdown options={options} />}
+      {openDropdown === key && (
+        <Dropdown
+          options={options}
+          onSelect={(value) => {
+            onSelect(value);
+            setOpenDropdown(null);
+          }}
+        />
+      )}
     </div>
   );
 
@@ -115,15 +130,15 @@ const Topbar = ({ buttons }: TopbarProps) => {
       {finalButtons.map((btn) =>
         btn === "Text To Speech"
           ? renderButton("Text To Speech", "tts", [
-              "English",
-              "Hindi",
-              "French",
+              "Text to Speech",
+              "Dubbing & LipSynch",
+              "Voice Cloning",
             ])
           : btn === "Tell A Story"
           ? renderButton("Tell A Story", "story", [
-              "Adventure",
-              "Comedy",
-              "Sci-Fi",
+              "Tell A Story",
+              "Introduce a Podcast",
+              "Create a Video Voiceover",
             ])
           : renderButton(btn, "custom", ["Option 1", "Option 2", "Option 3"])
       )}
