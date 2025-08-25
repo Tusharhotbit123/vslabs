@@ -13,7 +13,7 @@ const Dropdown = ({
     {options.map((opt) => (
       <div
         key={opt}
-        className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+        className="px-4 py-2 hover:bg-gray-100 cursor-pointer rounded-xl"
         onClick={() => onSelect(opt)}
       >
         {opt}
