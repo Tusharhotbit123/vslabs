@@ -1,10 +1,12 @@
+import { Image } from "../atoms/Image";
+
 const Dubbing = () => {
   return (
     <div className="w-full">
-      <img
+      <Image
         src="src/assets/images/image 2.png"
         alt="Dubbing"
-        className="w-full h-auto object-cover"
+        className="w-full h-80 object-contain"
       />
     </div>
   );
